@@ -7,10 +7,7 @@ function fetchWeather() {
         return;
     }
 
-    const apiKey = 'apiKey';
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=metric`;
-
-    fetch(apiUrl)
+    fetch(`http://localhost/WeatherWise/weatherforecast.php?cityName=${cityName}`)
         .then(response => response.json())
         .then(data => {
             displayWeather(data);
