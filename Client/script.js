@@ -50,6 +50,7 @@ function displayWeather(data) {
 
     for (const day in dailyForecasts) {
         const forecastData = dailyForecasts[day];
+
         const forecastCard = document.createElement('div');
         forecastCard.classList.add('forecast-card');
 
@@ -59,6 +60,9 @@ function displayWeather(data) {
         forecastCard.appendChild(dayOfWeek);
 
         forecastData.forEach((data) => {
+            const forecastCardItem = document.createElement('div');
+            forecastCardItem.classList.add('forecast-card-item');
+
             const time = document.createElement('p');
             time.textContent = data.time;
 
@@ -72,14 +76,15 @@ function displayWeather(data) {
             icon.src = `https://openweathermap.org/img/w/${data.icon}.png`;
             icon.alt = data.description;
 
-            forecastCard.appendChild(time);
-            forecastCard.appendChild(temperature);
-            forecastCard.appendChild(description);
-            forecastCard.appendChild(icon);
-
+            forecastCardItem.appendChild(time);
+            forecastCardItem.appendChild(temperature);
+            forecastCardItem.appendChild(description);
+            forecastCardItem.appendChild(icon);
+            forecastCard.appendChild(forecastCardItem);
 
         });
 
         forecastContainer.appendChild(forecastCard);
+       
     }
 }
