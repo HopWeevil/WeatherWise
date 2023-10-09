@@ -43,12 +43,13 @@ function displayWeather(data) {
             time: forecast.dt_txt,
             temperature: forecast.main.temp,
             description: forecast.weather[0].description,
+            icon: forecast.weather[0].icon,
         });
+        
     });
 
     for (const day in dailyForecasts) {
         const forecastData = dailyForecasts[day];
-        console.log(dailyForecasts.dt_txt);
         const forecastCard = document.createElement('div');
         forecastCard.classList.add('forecast-card');
 
@@ -66,9 +67,16 @@ function displayWeather(data) {
 
             const description = document.createElement('p');
             description.textContent = data.description;
+
+            const icon = document.createElement('img');
+            icon.src = `https://openweathermap.org/img/w/${data.icon}.png`;
+            icon.alt = data.description;
+
             forecastCard.appendChild(time);
             forecastCard.appendChild(temperature);
             forecastCard.appendChild(description);
+            forecastCard.appendChild(icon);
+
 
         });
 

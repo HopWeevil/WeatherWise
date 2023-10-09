@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>WeatherWise</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <input type="text" id="cityInput" placeholder="Enter City Name" required>
-    <button onclick="fetchWeather()">Search</button>
+    <div class="search-container">
+        <input type="text" id="cityInput" placeholder="Enter City Name" required>
+        <button onclick="fetchWeather()">Search</button>
+    </div>
     <div class="forecast-container" id="forecastContainer">
     </div>
     <script src="script.js"></script>
