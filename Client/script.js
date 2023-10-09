@@ -10,6 +10,7 @@ function fetchWeather() {
     fetch(`http://localhost/WeatherWise/weatherforecast.php?cityName=${cityName}`)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             displayWeather(data);
         })
         .catch(error => {
@@ -17,28 +18,37 @@ function fetchWeather() {
         });
 }
 
+function getDayOfWeek(dateString) 
+{
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const date = new Date(dateString);
+    const dayOfWeek = date.getDay();
+    return daysOfWeek[dayOfWeek];
+}
+  
 function displayWeather(data) {
     const forecastContainer = document.getElementById('forecastContainer');
+    forecastContainer.innerHTML = '';
+
     const dailyForecasts = {};
 
     data.list.forEach(forecast => {
-        const date = new Date(forecast.dt * 1000);
-        const day = date.toLocaleDateString('en-US', { weekday: 'long' });
+        const day = getDayOfWeek(forecast.dt_txt);
 
         if (!dailyForecasts[day]) {
             dailyForecasts[day] = [];
         }
 
         dailyForecasts[day].push({
-            time: date.toLocaleTimeString('en-US'),
-            temperature: Math.round(forecast.main.temp),
+            time: forecast.dt_txt,
+            temperature: forecast.main.temp,
             description: forecast.weather[0].description,
         });
     });
 
     for (const day in dailyForecasts) {
         const forecastData = dailyForecasts[day];
-
+        console.log(dailyForecasts.dt_txt);
         const forecastCard = document.createElement('div');
         forecastCard.classList.add('forecast-card');
 
@@ -56,10 +66,10 @@ function displayWeather(data) {
 
             const description = document.createElement('p');
             description.textContent = data.description;
-
             forecastCard.appendChild(time);
             forecastCard.appendChild(temperature);
-           
+            forecastCard.appendChild(description);
+
         });
 
         forecastContainer.appendChild(forecastCard);
