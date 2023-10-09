@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register user</title>
+</head>
+<body>
+    <div id="main-div">
+        <div id="registration">
+            <form action="../Server/registerUser.php" class="client-form" id="registration-form">
+                <h2>Register user</h2>
+                <label class="form-label">Enter name:</label><br>
+                <input type="text" class="form-input" name="name" id="registration-form-name" placeholder="John Smith">
+                <span class="error" id="registration-form-name-error"></span>
+                <br>
+                <label class="form-label">Enter phone number:</label><br>
+                <input type="text" class="form-input" name="phone" id="registration-form-phone" placeholder="+000111222333">
+                <span class="error" id="registration-form-phone-error"></span>
+                <br>
+                <label class="form-label">Enter email address:</label><br>
+                <input type="text" class="form-input" name="email" id="registration-form-email" placeholder="johnsmith@email.com">
+                <span class="error" id="registration-form-email-error"></span>
+                <br>
+                <label class="form-label">Enter your city:</label><br>
+                <input type="text" class="form-input" name="city" id="registration-form-city" placeholder="Rivendell">
+                <span class="error" id="registration-form-city-error"></span>
+                <br>
+                <label class="form-label">Enter your password:</label><br>
+                <input type="password" class="form-input" id="registration-form-password-1">
+                <span class="error" id="registration-form-password-1-error"></span>
+                <br>
+                <label class="form-label">Enter your password again:</label><br>
+                <input type="password" class="form-input"  name="password" id="registration-form-password-2">
+                <span class="error" id="registration-form-password-2-error"></span>
+                <br><br>
+                <input type="button" class="form-button" id="registration-form-cancel" value="Cancel"> 
+                <input type="button" class="form-button" id="registration-form-send" value="Register">
+                <input type="hidden" name="mode" value="register-user">
+            </form>
+        </div>
+    </div>
+    <script src="registerUser.js"></script>
+</body>
+</html>
