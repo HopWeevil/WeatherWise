@@ -129,5 +129,20 @@ function checkPassword2(password1, password2)
 }
 function registerUser(statusName, statusPhone, statusEmail, statusCity, statusPassword1, statusPassword2)
 {
-
+    let registerResult = false;
+    //console.log("Name:" + statusName + ", phone: " + statusPhone + ", email: " + statusEmail + ", city: " + statusCity + ", password1: " + statusPassword1 + ", password2: " + statusPassword2);
+    if(statusName && statusPhone && statusEmail && statusCity && statusPassword1 && statusPassword2)
+    {
+        let registerData = $("#registration-form").serializeArray();
+        //console.log(registerData);
+        $.post("../Server/registerUser.php", registerData, function(result){
+            if(result.status != "fail")
+            {
+                console.log(result);
+                registerResult = true;
+            }
+            console.log(result.message);
+        }, "JSON");
+    }
+    return registerResult;   
 }

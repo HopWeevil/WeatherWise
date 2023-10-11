@@ -15,7 +15,7 @@
         &&
         !empty($_POST['city'])
         &&
-        $_POST['mode'] == "register user"
+        $_POST['mode'] == "register-user"
         
     )
     {
