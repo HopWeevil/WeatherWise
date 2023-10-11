@@ -1,16 +1,32 @@
 <?php
     require "dbControl.php";
 
+    if
+    (
+        !empty($_POST['login'])
+        &&
+        !empty($_POST['login-type'])
+        &&
+        !empty($_POST['password'])
+        &&
+        $_POST['mode'] == "login-user"
+
+    )
+    {
+        loginUser($_POST['login'], $_POST['login-type'], $_POST['password']);
+    }
+
     function loginUser($login, $loginType, $password)
     {
         $password = hash("sha256", $password);
+        $queryCheck = "";
         if($loginType == '1')//login by phone
         {
             $queryCheck = "select id, name, email, phone, city from user where phone = '{$login}' and password = '{$password}'"; 
         }
-        else if ($loginType = '2')//login by email
+        else if ($loginType == '2')//login by email
         {
-            $queryCheck = "select id, name, phone, email, cityfrom user where email = '{$login}' and password = '{$password}'";
+            $queryCheck = "select id, name, phone, email, city from user where email = '{$login}' and password = '{$password}'";
         }
         $result = dbconnect($queryCheck);
         if(mysqli_num_rows($result) == 1)

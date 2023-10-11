@@ -9,7 +9,7 @@ $(function(){
     });
     $("#login-form-send").on("click", function(){
         //alert(statusLogin + " " + statusPassword);
-        loginAdmin(statusLogin, statusPassword);
+        loginUser(statusLogin, statusPassword);
     });
 });
 
@@ -19,7 +19,7 @@ function checkLogin(login)
     if(login.match(/^\+38\d{10}$/) != null)//phone
     {
         status = 1;
-        $("#login-admin-form-login-error").text("Login by phone");
+        $("#login-form-error").text("Login by phone");
     }
     else if(login.match(/^[a-zA-Z0-9\.]{4,17}@gmail.com$/) != null)//email
     {
@@ -45,4 +45,28 @@ function checkPassword(password)
         status = false;
     }
     return status;
+}
+
+function loginUser(statusLogin, statusLoginPassword){
+    let loginData = $("#login-form").serializeArray();
+    if(statusLogin == 1 || statusLogin == 2)
+    {
+        if(statusLoginPassword)
+        {
+            loginData.push({name: "login-type", value: statusLogin});
+            //console.log(loginData);
+            $.post("../Server/loginUser.php", loginData, function(result){
+                console.log(result);
+                if(result.status == "success")
+                {
+                    console.log(result.message);
+                }
+                if(result.status == "fail")
+                {
+                    console.log(result.message);
+                }
+
+            }, "JSON");
+        }
+    }
 }
