@@ -55,7 +55,7 @@ function loginUser(statusLogin, statusLoginPassword){
         {
             loginData.push({name: "login-type", value: statusLogin});
             //console.log(loginData);
-            $.post("../Server/loginUser.php", loginData, function(result){
+            $.post("http://localhost/WeatherWise/Server/loginUser.php", loginData, function(result){
                 console.log(result);
                 if(result.status == "success")
                 {

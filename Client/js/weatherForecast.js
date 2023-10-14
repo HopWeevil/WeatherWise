@@ -7,7 +7,7 @@ function fetchWeather() {
         return;
     }
 
-    fetch(`http://localhost/WeatherWise/weatherforecast.php?cityName=${cityName}`)
+    fetch(`http://localhost/WeatherWise/Server/weatherForecast.php?cityName=${cityName}`)
         .then(response => response.json())
         .then(data => {
             console.log(data);

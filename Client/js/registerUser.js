@@ -135,7 +135,7 @@ function registerUser(statusName, statusPhone, statusEmail, statusCity, statusPa
     {
         let registerData = $("#registration-form").serializeArray();
         //console.log(registerData);
-        $.post("../Server/registerUser.php", registerData, function(result){
+        $.post("http://localhost/WeatherWise/Server/registerUser.php", registerData, function(result){
             if(result.status != "fail")
             {
                 console.log(result);
