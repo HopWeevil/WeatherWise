@@ -23,10 +23,10 @@ create table reading (
 	id int auto_increment primary key,
 	user_id int not null,
 	city varchar(64) not null,
-	date date not null,
+	time datetime not null,
 	temperature float,
-	humidity float,
-	windspeed float,
+	description varchar(32),
+	icon varchar(4),
 
 	constraint reading_fk_user foreign key (user_id) references user (id)
 );
