@@ -16,6 +16,8 @@ html, body {
   justify-content: center;
 }
 
+
+
 .circle img {
   max-width: 100%;
   max-height: 100%;
@@ -128,5 +130,5 @@ html, body {
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
