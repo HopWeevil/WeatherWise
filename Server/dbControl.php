@@ -1,4 +1,5 @@
 <?php
+require('configuration.php');
 
     if(session_status() === PHP_SESSION_NONE)
     {
@@ -11,12 +12,6 @@
         echo(json_encode(array("status"=>"success","message"=>$message)));
     }
     function dbconnect($query){
-        $hostName = "localhost";
-        $bdName = "weatherwise";
-        //paste your own login and password:
-        $bdLogin = "root";
-        $bdPassword = "root";
-
         $dbc = mysqli_connect($hostName, $bdLogin, $bdPassword, $bdName) or fail("DB connection fail");
         return mysqli_query($dbc, $query);
     }
