@@ -48,62 +48,37 @@ function displayWeather(data) {
       temperature: forecast.main.temp,
       description: forecast.weather[0].description,
       icon: forecast.weather[0].icon,
+      windSpeed: forecast.wind.speed,
+      humidity: forecast.main.humidity,
     });
   });
+
   for (const key in dailyForecasts) {
     dailyForecasts[key] = dailyForecasts[key][0];
   }
+
   let resultArr = [];
   for (const day in dailyForecasts) {
     resultArr.push({ [day]: dailyForecasts[day] });
   }
+
   const findDays = Array.from(document.getElementsByClassName('day'));
   const findDate = document.getElementsByClassName('date')[0];
   const findDegree = Array.from(document.getElementsByClassName('degree-value'));
+  const findWindSpeed = Array.from(document.getElementsByClassName('wind-speed'));
+  const findHumidity = Array.from(document.getElementsByClassName('humidity'));
   const findIcon = Array.from(document.querySelectorAll('.forecast-icon > img'));
+  
   resultArr.forEach((item, index, arr) => {
     if(!index){
         findDate.textContent = new Date(Object.values(item)[0].time).toLocaleDateString();
     }
     findDays[index].textContent = Object.keys(item)[0];
     findDegree[index].textContent = Object.values(item)[0].temperature;
-    // findIcon[index].src = `https://openweathermap.org/img/w/${Object.values(item)[0].icon}.png`;
+    findHumidity[index].textContent = Object.values(item)[0].humidity;
+    findWindSpeed[index].textContent = Object.values(item)[0].windSpeed;
     findIcon[index].src = `../images/icons/${Object.values(item)[0].icon}.svg`;
   }); 
-
-  //     const forecastCard = document.createElement('div');
-  //     forecastCard.classList.add('forecast-card');
-
-  //     const dayOfWeek = document.createElement('h3');
-  //     dayOfWeek.textContent = day;
-
-  //     forecastCard.appendChild(dayOfWeek);
-  //     console.log(forecastData);
-
-  //     const forecastCardItem = document.createElement('div');
-  //     forecastCardItem.classList.add('forecast-card-item');
-
-  //     const time = document.createElement('p');
-  //     time.textContent = forecastData.time;
-
-  //     const temperature = document.createElement('p');
-  //     temperature.textContent = `${forecastData.temperature}°C`;
-
-  //     const description = document.createElement('p');
-  //     description.textContent = forecastData.description;
-
-  //     const icon = document.createElement('img');
-  //     icon.src = `https://openweathermap.org/img/w/${forecastData.icon}.png`;
-  //     icon.alt = forecastData.description;
-
-  //     forecastCardItem.appendChild(time);
-  //     forecastCardItem.appendChild(temperature);
-  //     forecastCardItem.appendChild(description);
-  //     forecastCardItem.appendChild(icon);
-  //     forecastCard.appendChild(forecastCardItem);
-
-  //     forecastContainer.appendChild(forecastCard);
-  //   }
 }
 
 fetchWeather();
