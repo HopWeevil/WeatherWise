@@ -1,6 +1,4 @@
 <?php
-require('configuration.php');
-
     if(session_status() === PHP_SESSION_NONE)
     {
         session_start();
@@ -12,6 +10,8 @@ require('configuration.php');
         echo(json_encode(array("status"=>"success","message"=>$message)));
     }
     function dbconnect($query){
+        
+        include "configuration.php";
         $dbc = mysqli_connect($hostName, $bdLogin, $bdPassword, $bdName) or fail("DB connection fail");
         return mysqli_query($dbc, $query);
     }
