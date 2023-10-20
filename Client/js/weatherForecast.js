@@ -32,7 +32,7 @@ function displayWeather(data) {
   const forecastContainer = document.getElementById('forecastContainer');
   forecastContainer.innerHTML = '';
   const loc = document.getElementsByClassName('location')[0];
-  loc.innerHTML = document.getElementById('cityInput').value || 'Kyiv';
+  loc.innerHTML = capitalizeCityName(document.getElementById('cityInput').value) || 'Kyiv';
 
   let dailyForecasts = {};
 
@@ -80,5 +80,12 @@ function displayWeather(data) {
     findIcon[index].src = `../images/icons/${Object.values(item)[0].icon}.svg`;
   }); 
 }
-
+function capitalizeCityName(name)
+{
+  return name.replace(
+    /\b\w+/g,
+    function(s){
+      return s.charAt(0).toUpperCase() + s.substr(1).toLowerCase();
+    });
+}
 fetchWeather();
