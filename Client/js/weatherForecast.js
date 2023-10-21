@@ -9,8 +9,8 @@ function fetchWeather(city = 'Kyiv') {
     return;
   }
 
-  fetch(`http://localhost:8888/WeatherWise/Server/weatherForecast.php?cityName=${cityName}`)
-    // fetch(`http://localhost/WeatherWise/Server/weatherForecast.php?cityName=${cityName}`)
+  //fetch(`http://localhost:8888/WeatherWise/Server/weatherForecast.php?cityName=${cityName}`)
+     fetch(`http://localhost/WeatherWise/Server/weatherForecast.php?cityName=${cityName}`)
     .then((response) => response.json())
     .then((data) => {
       // console.log(data);
@@ -174,7 +174,7 @@ function displayTime(timeWeater) {
     degree.appendChild(degreeValue);
 
     const windContainer = document.createElement('div');
-    // windContainer.classList.add('wind-container');
+    windContainer.classList.add('wind-container');
 
     const windSpeed = document.createElement('span');
     windSpeed.classList.add('wind-speed');

@@ -75,6 +75,7 @@ body {
     padding: 20px;
 } */
 
+
 .forecast-card {
   width: 200px;
   height: auto;
@@ -463,23 +464,19 @@ body {
   transition: 0.3s ease-in;
 }
 
-.wind-speed {
-  display: flex;
-  align-items: center;
-}
-
-.humidity {
-  display: flex;
-  align-items: center;
-}
-
 .wind-container {
-  display: flex;
-  align-items: center;
+  display: flex; 
+  flex-wrap: wrap; 
 }
 
-.wind-speed-icon {
-  padding: 5px;
+.wind-speed, .humidity {
+  display: flex; 
+  margin-right: 10px; 
+  margin-top: 10px;
+}
+
+.wind-speed-icon, .humidity-icon {
+  margin-right: 5px; 
 }
 
 .pointer {
