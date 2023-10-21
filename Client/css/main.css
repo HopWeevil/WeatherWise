@@ -462,3 +462,36 @@ body {
 
   transition: 0.3s ease-in;
 }
+
+.wind-speed {
+  display: flex;
+  align-items: center;
+}
+
+.humidity {
+  display: flex;
+  align-items: center;
+}
+
+.wind-container {
+  display: flex;
+  align-items: center;
+}
+
+.wind-speed-icon {
+  padding: 5px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.pointer:hover {
+  border: #009ad8 2px solid;
+  border-radius: 3%;
+}
+
+.show-time {
+  border: #009ad8 2px solid;
+  border-radius: 3%;
+}

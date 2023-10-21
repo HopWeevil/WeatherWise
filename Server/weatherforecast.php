@@ -3,7 +3,7 @@ require('configuration.php');
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
-    // header('Access-Control-Allow-Origin: http://127.0.0.1:5500');
+    header('Access-Control-Allow-Origin: http://127.0.0.1:5500');
 
     $cityName = $_GET['cityName'];
     if (!$cityName) {
