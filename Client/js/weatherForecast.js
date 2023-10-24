@@ -9,8 +9,7 @@ function fetchWeather(city = 'Kyiv') {
     return;
   }
 
-  //fetch(`http://localhost:8888/WeatherWise/Server/weatherForecast.php?cityName=${cityName}`)
-     fetch(`http://localhost/WeatherWise/Server/weatherForecast.php?cityName=${cityName}`)
+     fetch(`http://localhost:8000/weatherForecast.php?cityName=${cityName}`)
     .then((response) => response.json())
     .then((data) => {
       // console.log(data);

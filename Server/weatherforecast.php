@@ -1,9 +1,10 @@
 <?php
 require('configuration.php');
+header("Access-Control-Allow-Origin: null");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-
-    header('Access-Control-Allow-Origin: http://127.0.0.1:5500');
 
     $cityName = $_GET['cityName'];
     if (!$cityName) {

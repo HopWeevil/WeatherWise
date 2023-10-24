@@ -8,7 +8,7 @@ services:
         depends_on:
             - db
         volumes:
-            - ./Server:/var/www/html #не працює
+            - ./Server:/var/www/html
         ports:
             - 8000:80
     db:
