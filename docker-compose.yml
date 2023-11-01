@@ -16,18 +16,32 @@ services:
         image: mysql
         restart: always
         environment:
-            MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
-            MYSQL_DATABASE: MYSQL_DATABASE
-            MYSQL_USER: MYSQL_USER
-            MYSQL_PASSWORD: MYSQL_PASSWORD
+            MYSQL_USER: user
+            MYSQL_PASSWORD: userpassword
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: weatherwise
         ports:
-            - "9906:3306"
+            - "3306:3306"
+        command: --skip-ssl
     phpmyadmin:
       image: phpmyadmin/phpmyadmin
       container_name: phpmyadmin
       environment:
           PMA_HOST: db
-          PMA_USER: MYSQL_USER
-          PMA_PASSWORD: MYSQL_PASSWORD
+          PMA_USER: root
+          PMA_PASSWORD: root
       ports:
           - 8080:80
+    flyway:
+      image: flyway/flyway 
+      volumes:
+        - ./.migrations:/flyway/sql
+      depends_on:
+        - db
+      command:
+        - -url=jdbc:mysql://db:3306/weatherwise?allowPublicKeyRetrieval=true&useSSL=false
+        - -schemas=weatherwise
+        - -user=root
+        - -password=root
+        - migrate
+
