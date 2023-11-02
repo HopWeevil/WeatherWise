@@ -16,13 +16,27 @@ services:
         image: mysql
         restart: always
         environment:
-            MYSQL_USER: user
-            MYSQL_PASSWORD: userpassword
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: weatherwise
         ports:
             - "3306:3306"
-        command: --skip-ssl
+    wait:
+       image: willwill/wait-for-it
+       command: -t 60 db:3306
+       depends_on:
+         - db
+    flyway:
+      image: flyway/flyway
+      volumes:
+        - ./Migrations:/flyway/sql
+      environment:
+        - FLYWAY_URL=jdbc:mysql://db:3306/weatherwise?allowPublicKeyRetrieval=true&useSSL=false
+        - FLYWAY_USER=root
+        - FLYWAY_PASSWORD=root
+        - FLYWAY_VALIDATE_MIGRATION_NAMING=true
+      command: migrate
+      depends_on:
+        - wait
     phpmyadmin:
       image: phpmyadmin/phpmyadmin
       container_name: phpmyadmin
@@ -32,16 +46,4 @@ services:
           PMA_PASSWORD: root
       ports:
           - 8080:80
-    flyway:
-      image: flyway/flyway 
-      volumes:
-        - ./.migrations:/flyway/sql
-      depends_on:
-        - db
-      command:
-        - -url=jdbc:mysql://db:3306/weatherwise?allowPublicKeyRetrieval=true&useSSL=false
-        - -schemas=weatherwise
-        - -user=root
-        - -password=root
-        - migrate
-
+    
