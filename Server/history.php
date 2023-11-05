@@ -5,6 +5,15 @@
         getReadingHistory();
         exit;
     }
+    if(
+        isset($_POST['mode'], $_POST['id']) 
+        &&
+        !empty($_POST['id'])
+        &&
+        $_POST['mode'] == 'delete-reading'
+    ){
+        deleteReading($_POST['id']);
+    }
 
     function getReadingHistory(){
         if(isset($_SESSION['login-user-id'])){
@@ -44,6 +53,22 @@
                 }
             }
             echo(json_encode(array("readings"=>$readings)));
+        }else{
+            fail("Not logged in");
+        }
+        exit;
+    }
+    function deleteReading($id){
+        if(isset($_SESSION['login-user-id'])){
+            $query = "
+                delete from reading where id = '{$id}'
+            ";
+            $result = dbconnect($query);
+            if(!$result)
+            {
+                fail("Delete reading query fail");
+            }
+            success("Reading ".$id." deleted");
         }else{
             fail("Not logged in");
         }
