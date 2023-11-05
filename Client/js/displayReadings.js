@@ -12,7 +12,7 @@ function showCart()
             $.each(result.readings, function(){
                 console.log(this.id);
                 $("#history-table-body").append(
-                    "<tr><td>"+this.id+"</td><td>"+this.city+"</td><td>"+convertSQLDateOutput(this.date)+"</td><td>"+this.temperature+" &#8451;</td><td>"+this.description+"</td><td><img src='"+this.icon+"' width='50px'></td><td>"+this.windspeed+"km/h</td><td>"+this.humidity+"%</td></tr>"
+                    "<tr><td>"+this.id+"</td><td>"+this.city+"</td><td>"+convertSQLDateOutput(this.date)+"</td><td>"+this.temperature+" &#8451;</td><td>"+this.description+"</td><td><img src='"+this.icon+"' width='50px'></td><td>"+this.windspeed+"km/h</td><td>"+this.humidity+"%</td><td><button type='button' id='"+this.id+"-delete-reading-button' class='delete-reading-button' data-reading-id='"+this.id+"'>Delete</button></td></tr>"
                 );
             });
             $("#cart-table-body").append("<tr></tr>");
