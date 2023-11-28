@@ -20,6 +20,8 @@ services:
             MYSQL_DATABASE: weatherwise
         ports:
             - "3306:3306"
+        healthcheck:
+            test: "exit 0"
     wait:
        image: willwill/wait-for-it
        command: -t 60 db:3306
