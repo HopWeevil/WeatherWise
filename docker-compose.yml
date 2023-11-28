@@ -9,6 +9,7 @@ services:
             - db
         volumes:
             - ./Server:/var/www/html
+            - ./Client:/var/www/html/client
         ports:
             - 8000:80
     db:
