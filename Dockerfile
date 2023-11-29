@@ -5,3 +5,5 @@ RUN apt-get update && apt-get upgrade -y
 COPY ./src/Server /var/www/html
 COPY ./src/Client /var/www/html
 EXPOSE 8000
+
+CMD ["apache2ctl", "-D", "FOREGROUND"]
