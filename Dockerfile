@@ -3,5 +3,4 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN apt-get update && apt-get upgrade -y
 
 COPY apache_php.conf /usr/local/apache2/conf/apache_php.conf
-RUN echo "Include /usr/local/apache2/conf/apache_php.conf" \
-    >> /usr/local/apache2/conf/httpd.conf
+RUN echo "ServerName localhost" >> ./apache/apache_php.conf
