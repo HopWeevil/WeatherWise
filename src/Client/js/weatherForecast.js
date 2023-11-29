@@ -9,7 +9,7 @@ function fetchWeather(city = 'Kyiv') {
     return;
   }
 
-     fetch(`http://localhost:8000/weatherforecast.php?cityName=${cityName}`)
+     fetch(`http://139.59.153.228:8000/weatherforecast.php?cityName=${cityName}`)
     .then((response) => response.json())
     .then((data) => {
       // console.log(data);
