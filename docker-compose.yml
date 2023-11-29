@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-    php-apache-environment:
-        container_name: php-apache
+    php-nginx-environment:
+        container_name: php-nginx
         build:
             dockerfile: Dockerfile
         depends_on:
@@ -46,4 +46,3 @@ services:
           PMA_PASSWORD: root
       ports:
           - 8080:80
-    
