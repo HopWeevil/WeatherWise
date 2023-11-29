@@ -5,4 +5,4 @@ RUN apt-get update && apt-get upgrade -y
 COPY . /var/www/html/
 EXPOSE 80
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
+CMD ["/usr/sbin/apachectl -t", "-D", "FOREGROUND"]
